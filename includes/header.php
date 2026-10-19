@@ -12,6 +12,7 @@
   <?php if (current_user_id()): ?>
     <a href="words.php">Today</a>
     <a href="history.php">History</a>
+    <a href="my_words.php">My Words</a>
     <span class="sp"></span>
     <span><?= e($_SESSION['user_name'] ?? '') ?></span>
     <a href="logout.php">Logout</a>
