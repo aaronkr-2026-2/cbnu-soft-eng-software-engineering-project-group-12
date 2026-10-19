@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Daily Korean – Plain PHP (no framework)
 
 Requires: PHP 7.4+ with mysqli extension, MySQL/MariaDB.
