@@ -1,0 +1,1 @@
+A new Korean vocabulary learner visited my site to learn Korean. He learned 10 new Korean words every day for a week, but he did not review or practice the words he had learned.
