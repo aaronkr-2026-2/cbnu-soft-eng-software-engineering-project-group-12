@@ -30,6 +30,32 @@ CREATE TABLE user_daily_words (
   FOREIGN KEY (word_id) REFERENCES words(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE user_words (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  user_id INT UNSIGNED NOT NULL,
+  korean VARCHAR(100) NOT NULL,
+  romanization VARCHAR(100) NULL,
+  meaning VARCHAR(200) NOT NULL,
+  example_ko VARCHAR(255) NULL,
+  example_en VARCHAR(255) NULL,
+  created_at DATETIME NOT NULL,
+  KEY idx_user_korean (user_id, korean),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE user_files (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  user_id INT UNSIGNED NOT NULL,
+  kind ENUM('pdf','image') NOT NULL,
+  original_name VARCHAR(255) NOT NULL,
+  stored_name VARCHAR(64) NOT NULL,
+  mime VARCHAR(100) NOT NULL,
+  size_bytes BIGINT UNSIGNED NOT NULL,
+  created_at DATETIME NOT NULL,
+  KEY idx_user_kind (user_id, kind, created_at),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 INSERT INTO words (korean, romanization, meaning, example_ko, example_en) VALUES
 ('안녕하세요','annyeonghaseyo','Hello','안녕하세요, 만나서 반갑습니다.','Hello, nice to meet you.'),
 ('감사합니다','gamsahamnida','Thank you','도와주셔서 감사합니다.','Thank you for helping me.'),

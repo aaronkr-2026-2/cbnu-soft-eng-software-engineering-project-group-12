@@ -1,0 +1,4 @@
+# Uploaded user files (keep the folder and its access rules)
+storage/*
+!storage/.htaccess
+!storage/.gitkeep

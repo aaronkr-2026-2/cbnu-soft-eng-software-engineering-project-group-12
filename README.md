@@ -23,6 +23,25 @@ Each time a logged-in user opens `words.php` on a new calendar day, the
 app picks the next `WORDS_PER_DAY` (10, set in config.php) words they have
 never been given, from the `words` table, and locks them in for that date.
 Add more rows to `words` any time to give users more days of content.
+
+## Library (PDF books and images)
+Open **Library** in the top menu. It has two tabs:
+- **PDF Books** – upload PDFs, read them inside the app (`read_book.php`), download or delete them.
+- **Images** – upload JPG / PNG / GIF / WebP images, view them full size, download or delete them.
+
+Rules: PDF and image files only, max **25 MB per file**, checked in the browser and again on the server.
+Each user only ever sees and deletes their own files. Files are saved in `storage/` under random names and
+are only served through `file.php`, which checks who is logged in.
+
+Setup notes for the Library:
+- Existing database? Run `db_update_library.sql` once (new installs get the tables from `db.sql`).
+- PHP's default upload limit is only 2 MB. `.user.ini` (PHP-FPM) and `.htaccess` (Apache mod_php) raise it.
+  With the built-in server, start it like this:
+  `php -d upload_max_filesize=26M -d post_max_size=30M -S localhost:8000`
+- Make sure the `storage/` folder is writable by the web server.
+- Built-in `php -S` ignores `.htaccess`, so `storage/` is not protected there (file names are random, so they can't be guessed).
+  On Apache the folder is blocked by `storage/.htaccess`.
+
 =======
 # software-project
 
