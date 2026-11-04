@@ -1,0 +1,9 @@
+# Used by Apache + mod_php. Lets the app accept uploads up to 25 MB.
+<IfModule mod_php.c>
+    php_value upload_max_filesize 26M
+    php_value post_max_size 30M
+</IfModule>
+<IfModule mod_php7.c>
+    php_value upload_max_filesize 26M
+    php_value post_max_size 30M
+</IfModule>
